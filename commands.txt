@@ -1,0 +1,23 @@
+// Initialize the directory
+truffle init
+
+// Create contracts
+truffle create contract appointment
+truffle create contract base
+truffle create contract doctor
+truffle create contract patient
+
+// Install for first - time users
+npm install @truffle/hdwallet-provider
+
+// Setup a new Project at Truffle Ganache (https://archive.trufflesuite.com/ganache/)
+// Get the details of 'RPC Server', 'Network ID', 'Mnemonic' from the Truffle Ganache and paste in `truffle-config.js`
+
+// Under `migrations/`, write a deployment code
+
+// Compile
+truffle compile
+truffle migrate --reset --network development   // for migrating without hyperledger (comment out `type: "fabric-evm"` in truffle-confing.js)
+truffle migrate --network besu                  // for migrating with hyperledger
+
+// Once done, under `build/contracts`, get the addresses for each contracts (search for `"address":`) and paste it in `app.js`
