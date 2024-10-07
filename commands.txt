@@ -9,6 +9,8 @@ truffle create contract patient
 
 // Install for first - time users
 npm install @truffle/hdwallet-provider
+npm install node-rsa
+npm install ws
 
 // Setup a new Project at Truffle Ganache (https://archive.trufflesuite.com/ganache/)
 // Get the details of 'RPC Server', 'Network ID', 'Mnemonic' from the Truffle Ganache and paste in `truffle-config.js`
