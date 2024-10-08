@@ -2,29 +2,28 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blockchain Interface</title>
+    <meta charset="UTF-8"> <!-- Character encoding for the document -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Responsive design -->
+    <title>Blockchain Interface</title> <!-- Title of the web page -->
 
     <!-- Link to the external CSS file for styling the form -->
     <link rel="stylesheet" href="index.css">
 
-    <!-- Importing Web3 library to interact with the blockchain -->
+    <!-- Importing Web3 library to interact with the Ethereum blockchain -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.5.0/web3.min.js"></script>
 
     <!-- Importing Vanta.js and Three.js libraries for animated background -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
     <script src="https://unpkg.com/vanta/dist/vanta.waves.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/node-rsa/1.0.0/node-rsa.min.js"></script>
 
-    <!-- Link to the app.js file where the blockchain interaction happens -->
+    <!-- Link to the app.js file where blockchain interactions are defined -->
     <script src="app.js"></script>
 
-    <div id="vantaBackground"> </div>
+    <div id="vantaBackground"> </div> <!-- Container for Vanta.js background -->
+</head>
 
 <body>
-    <!-- Vanta background container -->
-
-
     <!-- Main content that stays above the Vanta background -->
     <div id="content" class="container">
         <!-- Action selector dropdown to choose between different actions: Add Doctor, Add Patient, or Book Appointment -->
@@ -44,7 +43,7 @@
                 <label>Doctor ID: <input type="number" id="doctorIdFetch" required></label>
                 <button type="submit">Get Doctor</button>
             </form>
-            <div id="doctorInfo"></div>
+            <div id="doctorInfo"></div> <!-- Display area for doctor info -->
 
             <h2>Add Doctor</h2>
             <form id="addDoctorForm">
@@ -72,7 +71,7 @@
                 <label>Patient ID: <input type="number" id="patientIdFetch" required></label>
                 <button type="submit">Get Patient</button>
             </form>
-            <div id="patientInfo"></div>
+            <div id="patientInfo"></div> <!-- Display area for patient info -->
         </div>
 
         <!-- Section for booking an appointment (initially hidden) -->
@@ -92,7 +91,8 @@
                 <label>Appointment ID: <input type="number" id="appointmentIdFetch" required></label>
                 <button type="submit">Get Appointment</button>
             </form>
-            <div id="appointmentInfo"></div>
+            <div id="appointmentInfo"></div> <!-- Display area for appointment info -->
+
             <h2>Send Appointment Info</h2>
             <form id="sendAppointmentForm">
                 <label>Appointment ID: <input type="number" id="appointmentIdSend" required></label>
@@ -101,26 +101,24 @@
         </div>
     </div>
 
-
-    <!-- Initialize Vanta.js background -->
+    <!-- Initialize Vanta.js background with specified options -->
     <script>
         VANTA.WAVES({
-            el: "#vantaBackground",
-            mouseControls: true,
-            touchControls: true,
-            gyroControls: false,
-            minHeight: 200.00,
-            minWidth: 200.00,
-            scale: 1.00,
-            scaleMobile: 1.00,
-            color: 0x1f1f1f,   /* Dark background */
-            shininess: 50.00,
-            waveHeight: 20.00,
-            waveSpeed: 0.70,
-            zoom: 0.85
+            el: "#vantaBackground",  // Element to apply Vanta.js effect
+            mouseControls: true,     // Enable mouse control for effect
+            touchControls: true,      // Enable touch control for mobile devices
+            gyroControls: false,      // Disable gyroscope control
+            minHeight: 200.00,       // Minimum height for the effect
+            minWidth: 200.00,        // Minimum width for the effect
+            scale: 1.00,             // Scale of the effect
+            scaleMobile: 1.00,       // Scale for mobile devices
+            color: 0x1f1f1f,         // Dark background color
+            shininess: 50.00,        // Shininess of the waves
+            waveHeight: 20.00,       // Height of the waves
+            waveSpeed: 0.70,         // Speed of the waves
+            zoom: 0.85               // Zoom level for the effect
         });
     </script>
-    </div>
 </body>
 
 </html>

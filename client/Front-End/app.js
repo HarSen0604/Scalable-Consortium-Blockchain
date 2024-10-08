@@ -216,46 +216,106 @@ window.addEventListener('load', async () => {
             try {
                 const appointment = await appointmentContract.methods.getAppointment(appointmentId).call();
         
-                // Format the appointment details as JSON
+                // Get the patientId from the appointment details
+                const patientId = appointment[0]; // Assuming patientId is at index 0
+        
+                // Fetch patient details using the patientId
+                const patient = await patientContract.methods.getPatient(patientId).call();
+        
+                // Format the appointment and patient details as JSON
                 const appointmentDetails = {
-                    patientId: appointment[0],
-                    doctorId: appointment[1],
-                    roomId: appointment[2],
-                    appointmentDate: appointment[3],
+                    patient: {
+                        appointmentDate: appointment[3], // Assuming patient ID is at index 0
+                        name: patient[0], // Assuming patient name is at index 1
+                        age: patient[1], // Assuming patient age is at index 2
+                        medicalHistory: patient[2], // Assuming patient medical history is at index 3
+                    },
                 };
         
-                // Send the appointment details to the server
+                // Send the appointment and patient details to the server
                 await sendAppointmentDetails(appointmentDetails);
         
             } catch (error) {
                 console.error(error);
-                alert('Error fetching appointment information: ' + error.message);
+                alert('Error fetching appointment or patient information: ' + error.message);
             }
-        });
-        
+        });        
+
         // Function to send appointment details to the server
         async function sendAppointmentDetails(appointmentDetails) {
-            console.log('Sending appointment details:', appointmentDetails);
-        
+            console.log('Preparing to send appointment details:', appointmentDetails);
+
             try {
-                const response = await fetch('http://localhost:5500/', {  // Update this line
+                // Convert appointmentDetails to a JSON string
+                const appointmentDetailsString = JSON.stringify(appointmentDetails);
+
+                // Fetch the server's public key in PEM format
+                const serverPublicKeyPem = await fetch('./ws-server/server_public_key.pem').then(res => res.text());
+
+                // Convert PEM to CryptoKey (Browser compatible)
+                const serverPublicKey = await importPublicKey(serverPublicKeyPem);
+
+                // Encrypt the appointment details using the Web Crypto API
+                const encryptedDetails = await window.crypto.subtle.encrypt(
+                    {
+                        name: "RSA-OAEP",
+                        hash: "SHA-256"
+                    },
+                    serverPublicKey,
+                    new TextEncoder().encode(appointmentDetailsString)
+                );
+
+                // Send the encrypted message to the server as a base64 string
+                const response = await fetch('http://localhost:5500/', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify(appointmentDetails),
+                    body: JSON.stringify({
+                        encryptedMessage: btoa(String.fromCharCode(...new Uint8Array(encryptedDetails))),
+                    }),
                 });
-        
+
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
-        
-                console.log('Appointment details sent successfully!');
+
+                console.log('Encrypted appointment details sent successfully!');
             } catch (error) {
                 console.error('Error sending appointment details:', error);
             }
         }
-        
+
+        // Helper function to import PEM-encoded RSA public key as CryptoKey
+        async function importPublicKey(pem) {
+            // Remove the PEM header and footer
+            const pemHeader = "-----BEGIN PUBLIC KEY-----";
+            const pemFooter = "-----END PUBLIC KEY-----";
+            const pemContents = pem.replace(pemHeader, "").replace(pemFooter, "").replace(/\n/g, "");
+            const binaryDerString = window.atob(pemContents);
+            const binaryDer = str2ab(binaryDerString);
+
+            return window.crypto.subtle.importKey(
+                "spki",
+                binaryDer,
+                {
+                    name: "RSA-OAEP",
+                    hash: "SHA-256"
+                },
+                true,
+                ["encrypt"]
+            );
+        }
+
+        // Helper function to convert a string to an ArrayBuffer
+        function str2ab(str) {
+            const buf = new ArrayBuffer(str.length);
+            const bufView = new Uint8Array(buf);
+            for (let i = 0, strLen = str.length; i < strLen; i++) {
+                bufView[i] = str.charCodeAt(i);
+            }
+            return buf;
+        }
 
     } else {
         alert('MetaMask not detected. Please install MetaMask to interact with this application.');
