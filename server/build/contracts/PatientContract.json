@@ -8160,12 +8160,12 @@
     "5777": {
       "events": {},
       "links": {},
-      "address": "0xc7Aa2566169dF55e3ABcb701B6ccf18B4f2dB6aF",
-      "transactionHash": "0xc6f3d90f89ea624d84ed29175da0e6e05f2bd5d2c4ddb4dd965fbf075d53f31a"
+      "address": "0xE609ffac1691B3838208eE6Cf3d22e83B7F972d8",
+      "transactionHash": "0x110c1a4f47034ffe75f4526b112de600f7686ddac9797d9869ef691819c82d4b"
     }
   },
   "schemaVersion": "3.4.16",
-  "updatedAt": "2024-10-06T08:25:42.474Z",
+  "updatedAt": "2024-10-08T16:02:14.633Z",
   "networkType": "ethereum",
   "devdoc": {
     "details": "A smart contract for managing patient information",

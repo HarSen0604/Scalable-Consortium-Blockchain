@@ -1,102 +1,111 @@
+/* Basic styling for body and html elements */
 body, html {
-    font-family: Arial, sans-serif;
-    height: 100%;
-    width: 100%;
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 40px;
+    font-family: Arial, sans-serif; /* Set the font for the entire document */
+    height: 100%; /* Make the body take up the full height */
+    width: 100%; /* Make the body take up the full width */
+    margin: 0; /* Remove default margin */
+    display: flex; /* Use flexbox for centering content */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    padding: 40px; /* Add padding around the content */
 }
 
-/* Apply z-index to keep the form elements above the Vanta background */
+/* Container for form content to ensure it appears above background */
 #content {
-    position: relative;
-    z-index: 1;
-    padding: 20px;
-    max-width: 600px;
-    width: 100%;
+    position: relative; /* Position relative to allow z-index usage */
+    z-index: 1; /* Set z-index to keep content above background */
+    padding: 20px; /* Add padding around the content */
+    max-width: 600px; /* Maximum width of the content */
+    width: 100%; /* Full width for responsive design */
 }
 
 /* Vanta background container styling */
 #vantaBackground {
-    position: fixed;
-top: 0;
-left: 0;
-width: 100%;
-height: 100%;
-z-index: -1;
+    position: fixed; /* Fixed position to cover the entire viewport */
+    top: 0; /* Align to the top */
+    left: 0; /* Align to the left */
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    z-index: -1; /* Behind all other content */
 }
 
+/* Heading styling */
 h2 {
-    color: #333;
-    margin-bottom: 15px;
-    font-size: 24px;
+    color: #333; /* Dark gray color for headings */
+    margin-bottom: 15px; /* Space below the heading */
+    font-size: 24px; /* Set font size */
 }
 
+/* Label styling for form fields */
 label {
-    display: block;
-    margin: 15px 0 5px;
-    font-weight: bold;
-    color: #555;
-    padding-bottom: 10px;
+    display: block; /* Block display for labels */
+    margin: 15px 0 5px; /* Space around labels */
+    font-weight: bold; /* Bold font for labels */
+    color: #555; /* Medium gray color */
+    padding-bottom: 10px; /* Space below the label */
 }
 
+/* Input fields styling */
 input[type="text"],
 input[type="number"] {
-    width: 95%;
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    transition: border-color 0.3s ease-in-out;
+    width: 95%; /* Full width with slight margin */
+    padding: 12px; /* Padding inside the input */
+    border: 1px solid #ccc; /* Light gray border */
+    border-radius: 8px; /* Rounded corners */
+    transition: border-color 0.3s ease-in-out; /* Smooth transition for border color */
 }
 
+/* Focus state for input fields */
 input[type="text"]:focus,
 input[type="number"]:focus {
-    border-color: #432345;
-    outline: none;
+    border-color: #432345; /* Change border color on focus */
+    outline: none; /* Remove default outline */
 }
 
+/* Button styling */
 button {
-    padding: 12px 20px;
-    background-color:#432345;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 18px;
-    width: 100%;
-    margin-top: 15px;
-    transition: background-color 0.3s ease-in-out;
+    padding: 12px 20px; /* Padding inside the button */
+    background-color: #432345; /* Dark background color */
+    color: white; /* White text color */
+    border: none; /* Remove default border */
+    border-radius: 8px; /* Rounded corners */
+    cursor: pointer; /* Change cursor on hover */
+    font-size: 18px; /* Font size for button text */
+    width: 100%; /* Full width for the button */
+    margin-top: 15px; /* Space above the button */
+    transition: background-color 0.3s ease-in-out; /* Smooth background color change */
 }
 
+/* Hover effect for buttons */
 button:hover {
-    background-color: #218838;
+    background-color: #218838; /* Change background color on hover */
 }
 
+/* Styling for doctor info section */
 #doctorInfo {
-    margin-top: 30px;
-    padding: 15px;
-    background-color: #f8f9fa;
-    border-radius: 8px;
+    margin-top: 30px; /* Space above the section */
+    padding: 15px; /* Padding inside the section */
+    background-color: #f8f9fa; /* Light gray background */
+    border-radius: 8px; /* Rounded corners */
 }
 
+/* Container for action selector with center alignment */
 .action-selector-container {
-    text-align: center;
+    text-align: center; /* Center-align text within container */
 }
 
+/* Styling for action selector buttons */
 .action-selector {
-    padding: 12px;
-    font-size: 18px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    background-color: #fff;
-    cursor: pointer;
+    padding: 12px; /* Padding inside the selector */
+    font-size: 18px; /* Font size for text */
+    border: 1px solid #ccc; /* Light gray border */
+    border-radius: 8px; /* Rounded corners */
+    background-color: #fff; /* White background */
+    cursor: pointer; /* Change cursor on hover */
 }
 
-.container
-{
-    background-color: white;
-    border-radius: 20px;
-
+/* General container styling */
+.container {
+    background-color: white; /* White background for the container */
+    border-radius: 20px; /* Rounded corners */
 }

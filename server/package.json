@@ -7,6 +7,7 @@
     "express": "^4.21.0",
     "fs": "^0.0.1-security",
     "node-rsa": "^1.1.1",
+    "require": "^2.4.20",
     "ws": "^8.18.0"
   },
   "name": "scalable-consortium-blockchain",

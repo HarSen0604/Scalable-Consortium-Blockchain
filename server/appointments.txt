@@ -1,0 +1,4 @@
+Patient Name: Bheem
+Age: 69
+Medical History: Age is the issue. Replace age with age
+Appointment Date: 2024-10-09

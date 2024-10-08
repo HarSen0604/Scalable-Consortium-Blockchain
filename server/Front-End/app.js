@@ -57,6 +57,7 @@ window.addEventListener('load', async () => {
 
         async function handleUnauthorizedAccess() {
             const isAuthorized = await isUserAuthorized();
+            // const isAuthorized = false;
 
             if (!isAuthorized) {
                 document.getElementById('accessDialog').style.display = 'block';
@@ -212,7 +213,7 @@ window.addEventListener('load', async () => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
-        
+
                 const data = await response.json();
                 document.getElementById('executionResult').innerHTML = `
                     <pre>${data.content}</pre>
@@ -222,7 +223,6 @@ window.addEventListener('load', async () => {
                 alert('Error fetching appointment data: ' + error.message);
             }
         });
-        
 
     } else {
         alert('MetaMask not detected. Please install MetaMask to interact with this application.');
