@@ -206,6 +206,24 @@ window.addEventListener('load', async () => {
             }
         });
 
+        document.getElementById('getExecutionResultButton').addEventListener('click', async () => {
+            try {
+                const response = await fetch('http://localhost:5500/appointments');
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+        
+                const data = await response.json();
+                document.getElementById('executionResult').innerHTML = `
+                    <pre>${data.content}</pre>
+                `;
+            } catch (error) {
+                console.error(error);
+                alert('Error fetching appointment data: ' + error.message);
+            }
+        });
+        
+
     } else {
         alert('MetaMask not detected. Please install MetaMask to interact with this application.');
     }
