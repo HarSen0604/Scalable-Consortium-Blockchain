@@ -67,5 +67,6 @@ This will prevent any errors such as "Ran Out of Gas."
 - Be cautious of warnings related to already-deployed contracts when reusing test networks.
 - Use different Google Chrome profiles to avoid account conflicts between MetaMask wallets.
 - Ensure both projects are running on different ports and networks for seamless communication.
+- Run only `server2.js` using `node server2.js` command. THe client side code responsible for sending the blockchain data is integrated in the `app.js` itself.
 
 That's it! You now have a scalable consortium blockchain setup for a healthcare system.
